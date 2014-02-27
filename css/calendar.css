@@ -1,0 +1,44 @@
+/* jQuery Calendar CSS
+ * 
+ * See github.com/a2wd/jquery-calendar
+ * or www.a2wd.com/jquery-calendar
+ *
+ */
+
+.acCal
+{
+}
+
+.acNav, .acHead, .acRow
+{
+	margin:0 auto;
+}
+
+.acLast, .acNext, .acDate, .acHeadData, .acDay, .acHour
+{
+	background-color:#ccc;
+	display:inline-block;
+	width:14.27%;
+}
+
+/* .acI and .acJ classes for span day and date */
+.acI, .acJ, .acY
+{
+	float:left;
+}
+
+/* Classes to style height of rows */
+.ac4rows
+{
+	height:25%;
+}
+
+.ac5rows
+{
+	height:20%;
+}
+
+.ac6rows
+{
+	height:16.65%;
+}
