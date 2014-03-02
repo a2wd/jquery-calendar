@@ -3,21 +3,26 @@ jquery-calendar
 
 A calendar plugin for jQuery
 
-To clone simply use 'git clone' 
+To clone simply use:
 
-
+    git clone https://github.com/a2wd/jquery-calendar.git
 
 To use ensure you have a link to jQuery and call on an element like so:
 
+````html
 $(element).aCal();
+````
 
 Optionally, use the returned value to further manipulate the calendar object:
 
+````html
 var calendar = $(element).aCal();
 calendar.move(1);
+````
 
 Example html:
 
+````html
 <!DOCTYPE html>
 <html>
 	<head>
@@ -38,3 +43,4 @@ Example html:
 		</script>
 	</body>
 </html>
+````
