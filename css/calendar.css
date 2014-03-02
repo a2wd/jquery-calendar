@@ -11,10 +11,11 @@
 
 .acNav, .acHead, .acRow
 {
+	height:100%;
 	margin:0 auto;
 }
 
-.acLast, .acNext, .acDate, .acHeadData, .acDay, .acHour
+.acLast, .acNext, .acDate, .acHeadData, .acDay, .acHour, .acNow
 {
 	background-color:#ccc;
 	display:inline-block;
@@ -24,7 +25,6 @@
 /* .acI and .acJ classes for span day and date */
 .acI, .acJ, .acY
 {
-	float:left;
 }
 
 /* Classes to style height of rows */

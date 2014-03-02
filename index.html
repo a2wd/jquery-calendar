@@ -7,13 +7,18 @@
 	</head>
 	<body>
 		<div class="calendar"></div>
-
+		<button id="calHome">Today</button>
 		<!-- Javascript for jQuery, calendar plugin & initialisation -->
 		<script src="js/vend/jquery.js"></script>
 		<script src="js/calendar.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				var calendar = $(".calendar").calendar();
+				var calendar = $(".calendar").aCal();
+				console.log(calendar);
+				$("#calHome").click(function(e){
+					e.preventDefault();
+					calendar.aCal.move();
+				});
 			});
 		</script>
 	</body>
