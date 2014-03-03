@@ -6,19 +6,14 @@
 		<link href="css/calendar.css" rel="stylesheet" media="screen">
 	</head>
 	<body>
-		<div class="calendar"></div>
-		<button id="calHome">Today</button>
+		<div id="calendar"></div>
 		<!-- Javascript for jQuery, calendar plugin & initialisation -->
 		<script src="js/vend/jquery.js"></script>
 		<script src="js/calendar.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				var calendar = $(".calendar").aCal();
-				console.log(calendar);
-				$("#calHome").click(function(e){
-					e.preventDefault();
-					calendar.aCal.move();
-				});
+				$("#calendar").aCal();
+				var aCal = $("#calendar").data("aCal");
 			});
 		</script>
 	</body>

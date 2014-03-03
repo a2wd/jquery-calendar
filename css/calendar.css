@@ -5,26 +5,111 @@
  *
  */
 
-.acCal
+.aCal
 {
+	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT",
+		"Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L",
+		Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	width: 100%;
+	max-width:400px;
+	height:400px;
 }
 
-.acNav, .acHead, .acRow
+/* Clearfix for calendar sections */
+.aCal > *:after, .acRow:after
 {
-	height:100%;
+	content:"";
+	display:table;
+	clear:both;
+}
+
+.acNav, .acHead, .acBody,
+{
 	margin:0 auto;
+	width:100%;
 }
 
-.acLast, .acNext, .acDate, .acHeadData, .acDay, .acHour, .acNow
+.acBody
+{
+	height:200px;
+	font-size:0.75em;
+}
+
+.acRow
+{
+	width:100%;
+}
+
+.acLast, .acNext, .acDate, .acHeadData, .acDay, .acHour, .acNow, .acBlank, .acDay
+{
+	float:left;
+	cursor:pointer;
+	width:14.27%;
+	height:100%;
+}
+
+.acLast:hover, .acNext:hover, .acDate:hover, .acNow:hover
+{
+	color:#fd291c;
+}
+
+.acLast, .acNext, .acDate
+{
+	text-align:center;
+	height:30px;
+	width:25%;
+}
+
+.acDate
+{
+	width:30%;
+}
+
+.acNow
+{
+	float:right;
+}
+
+.acBlank
+{
+	height:1px;
+}
+
+.acDay
+{
+	border-top: 1px solid #ccc;
+}
+
+.acDay:hover
 {
 	background-color:#ccc;
-	display:inline-block;
-	width:14.27%;
 }
 
 /* .acI and .acJ classes for span day and date */
-.acI, .acJ, .acY
+.acI, .acToday
 {
+	text-align:center;
+	display:table-cell;
+	vertical-align:middle;
+	height:20px;
+	width:20px;
+}
+
+.acToday
+{
+	background:#ff2d19;
+	border-radius:50%;
+	color:#fff;
+}
+
+.acY
+{
+	font-size:75%;
+}
+
+.acY:before
+{
+	content:" ";
 }
 
 /* Classes to style height of rows */

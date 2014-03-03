@@ -16,8 +16,9 @@ $(element).aCal();
 Optionally, use the returned value to further manipulate the calendar object:
 
 ````html
-var calendar = $(element).aCal();
-calendar.move(1);
+$(element).aCal();
+var aCal = $(element).data("aCal");
+aCal.move(1);
 ````
 
 Example html:
@@ -31,14 +32,16 @@ Example html:
 		<link href="css/calendar.css" rel="stylesheet" media="screen">
 	</head>
 	<body>
-		<div class="calendar"></div>
+		<div id="calendar"></div>
 
 		<!-- Javascript for jQuery, calendar plugin & initialisation -->
 		<script src="js/vend/jquery.js"></script>
 		<script src="js/calendar.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				var calendar = $(".calendar").aCal();
+				$("#calendar").aCal();
+				var aCal = $("#calendar").data("aCal");
+				aCal.move(1);
 			});
 		</script>
 	</body>

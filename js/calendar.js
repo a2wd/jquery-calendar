@@ -26,6 +26,7 @@
 			this.firstDay = this._firstDay();
 			this.monthDays = this._monthDays();
 			this.numWeeks = this._numWeeks();
+			this.today = new Date();
 
 			for(var i = 0; i < 12; i++)
 			{
@@ -108,7 +109,7 @@
 		_header: function(){
 			var output = "<div class='aCal'><div class='acNav'>";
 
-			output += "<div class='acLast' id='acLast'>Last</div>";
+			output += "<div class='acLast' id='acLast'><</div>";
 			if(this.options.style==="month")
 			{
 				output += "<div class='acDate'><span class='acJ'>";
@@ -120,15 +121,15 @@
 			else if(this.style==="week")
 			{
 			}
-			output += "<div class='acNow' id='acNow'>Today</div>";
-			output += "<div class='acNext' id='acNext'>Next</div>";
+			output += "<div class='acNow' id='acNow'>Now</div>";
+			output += "<div class='acNext' id='acNext'>></div>";
 
 			output += "</div><div class='acHead'>";
 			//Could iterate with options.days.each()
 			//but a for loop is faster
 			for(x=0;x<7;x++)
 			{
-				output += "<div class='acHeadData'>" + this.options.days[x] + "</div>";
+				output += "<div class='acHeadData'>" + this.options.daysAbb[x] + "</div>";
 			}
 			output += "</div>";
 
@@ -142,27 +143,33 @@
 
 		_body: function(){
 			var output = "<div class='acBody'>";
+			var d = (this.today.getMonth() === this.options.date.getMonth()
+			&& this.options.date.getFullYear() === this.today.getFullYear()) ? this.today.getDate() : 0;
 
 			if(this.options.style==="month")
 			{
 				var divClasses = "acRow " + this.options.weeksClasses[this.numWeeks-4];
 				output += "<div class='"+ divClasses + "'>";
+
 				var x=1;
 				var y=1;
+
 				while(x<this.firstDay)
 				{
 					x++;
-					output += "<div class='acDay'></div>";
+					output += "<div class='acBlank'></div>";
 				}
 				while(x<=7)
 				{
 					x++;
 					output += "<div class='acDay'>";
-					output += "<span class='acI'>" + y + "</span>";
+					output += (y===d) ?  "<span class='acToday'>" : "<span class='acI'>";
+					output += y + "</span>";
 					output += "</div>";
 					y++;
 				}
-				var z = y;
+				var z = y>6 ? y-7 : y;
+
 				while(y<=this.monthDays)
 				{
 					if(y%7 === z)
@@ -170,7 +177,8 @@
 						output += "</div><div class='"+ divClasses + "'>";
 					}
 					output += "<div class='acDay'>";
-					output += "<span class='acI'>" + y + "</span>";
+					output += (y===d) ?  "<span class='acToday'>" : "<span class='acI'>";
+					output += y + "</span>";
 					output += "</div>";
 					y++;
 				}
