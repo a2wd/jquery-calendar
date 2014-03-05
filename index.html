@@ -12,7 +12,12 @@
 		<script src="js/calendar.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#calendar").aCal();
+				var events = {
+					"2014-03-11":"flexi",
+					"2014-03-12":"leave",
+					"2014-03-10":"sick"
+				};
+				$("#calendar").aCal({"events":events});
 				var aCal = $("#calendar").data("aCal");
 			});
 		</script>

@@ -51,6 +51,7 @@
 
 		click: function(e){
 			e.preventDefault();
+			e.stopPropagation();
 			if(e.target.id == "acLast")
 			{
 				this.move(-1);
@@ -63,6 +64,10 @@
 			{
 				this.move();
 			}
+			else if(e.target.className === "acDay" || e.target.className === "acI" || e.target.className === "acToday")
+			{
+				console.log(e.target.innerText);
+			}
 		},
 
 		_addClick: function(){
@@ -71,7 +76,7 @@
 		},
 
 		_removeClick: function(){
-			this.widget.off("click", ".aCal", this.click);
+			this.$element.off("click", ".aCal", this.click);
 		},
 
 		_firstDay: function(date){
@@ -142,9 +147,18 @@
 		},
 
 		_body: function(){
+			//Date format from mySQL:
+			//2014-02-10 09:21:04
+			//Transform for hours and days
+			var events = JSON.stringify(this.options.events) === "{}" ? null : this.options.events;
+
 			var output = "<div class='acBody'>";
-			var d = (this.today.getMonth() === this.options.date.getMonth()
-			&& this.options.date.getFullYear() === this.today.getFullYear()) ? this.today.getDate() : 0;
+			var todayMonth = this.today.getMonth(), dateMonth = this.options.date.getMonth();
+			var todayYear = this.today.getFullYear(), dateYear = this.options.date.getFullYear();
+			var todayDate = this.today.getDate();
+			var d = (todayMonth === dateMonth) && (dateYear === todayYear) ? todayDate : 0;
+			//Transform dateMonth for two digit style
+			dateMonth = (++dateMonth < 10) ? "0" + dateMonth : dateMonth;
 
 			if(this.options.style==="month")
 			{
@@ -153,6 +167,8 @@
 
 				var x=1;
 				var y=1;
+				//Event class, colour for event
+				var eClass = "";
 
 				while(x<this.firstDay)
 				{
@@ -161,22 +177,49 @@
 				}
 				while(x<=7)
 				{
+					if(events)
+					{
+						var yy = y < 10 ? "0" + y : y;
+						var eDate = dateYear + "-" + dateMonth + "-" + yy;
+						if(this.options.events[eDate])
+						{
+							eClass = this.options.events[eDate];
+						}
+						else
+						{
+							eClass = "";
+						}
+					}
 					x++;
-					output += "<div class='acDay'>";
+					output += "<div class='acDay " + eClass + "'>";
 					output += (y===d) ?  "<span class='acToday'>" : "<span class='acI'>";
 					output += y + "</span>";
 					output += "</div>";
 					y++;
 				}
-				var z = y>6 ? y-7 : y;
+				//The remainder for calculating end of week
+				var z = y%7;
 
 				while(y<=this.monthDays)
 				{
+					if(events)
+					{
+						var yy = y < 10 ? "0" + y : y;
+						var eDate = dateYear + "-" + dateMonth + "-" + yy;
+						if(this.options.events[eDate])
+						{
+							eClass = this.options.events[eDate];
+						}
+						else
+						{
+							eClass = "";
+						}
+					}
 					if(y%7 === z)
 					{
 						output += "</div><div class='"+ divClasses + "'>";
 					}
-					output += "<div class='acDay'>";
+					output += "<div class='acDay " + eClass + "'>";
 					output += (y===d) ?  "<span class='acToday'>" : "<span class='acI'>";
 					output += y + "</span>";
 					output += "</div>";
@@ -246,7 +289,8 @@
 		days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
 		monthsAbb: [],
 		daysAbb: [],
-		weeksClasses: ["ac4rows", "ac5rows", "ac6rows"]
+		weeksClasses: ["ac4rows", "ac5rows", "ac6rows"],
+		events: {}
 	};
 
 	$.fn.aCal.Constructor = aCal;

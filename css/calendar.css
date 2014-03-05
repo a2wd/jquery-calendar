@@ -78,6 +78,7 @@
 .acDay
 {
 	border-top: 1px solid #ccc;
+	overflow:hidden;
 }
 
 .acDay:hover
@@ -86,7 +87,7 @@
 }
 
 /* .acI and .acJ classes for span day and date */
-.acI, .acToday
+.acI, .acToday 
 {
 	text-align:center;
 	display:table-cell;
@@ -102,7 +103,7 @@
 	color:#fff;
 }
 
-.acY
+.acHeadData, .acY, .acNav
 {
 	font-size:75%;
 }
@@ -127,3 +128,53 @@
 {
 	height:16.65%;
 }
+
+/* Classes to style special days */
+.sick
+{
+	background-color:#f472d0;
+}
+
+.sick:hover
+{
+	background-color:#d80073;
+}
+
+.sick:after
+{
+	content:"sick";
+	margin-left:2px;
+}
+
+.flexi
+{
+	background-color:#4390df;
+}
+
+.flexi:hover
+{
+	background-color:#16499a;
+}
+
+.flexi:after
+{
+	content:"flexi";
+	margin-left:2px;
+}
+
+.leave
+{
+	background-color:#a4c400;
+}
+
+.leave:hover
+{
+	background-color:#008a00;
+}
+
+.leave:after
+{
+	content:"leave";
+	margin-left:2px;
+}
+
